@@ -10,6 +10,8 @@ if len(sys.argv) > 1:
     custom_port = sys.argv[1]
     if custom_port.startswith("tty"):
         port = f"/dev/{custom_port}"
+    else:
+        port = custom_port
 
 try:
     ser = serial.Serial(port, 9600)
@@ -24,3 +26,4 @@ try:
     ser.close()
 except serial.SerialException as e:
     print(f"Error opening or setting DTR on port {port}: {e}")
+    print("Please specify a valid serial port")
